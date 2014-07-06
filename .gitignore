@@ -1,0 +1,23 @@
+# Laravel
+/bootstrap/compiled.php
+.env.*.php
+.env.php
+
+# Composer
+/vendor
+
+# Bower
+/assets/vendor
+
+# System
+.DS_Store
+Thumbs.db
+
+# PhpStorm
+.idea/
+
+# Node packages
+/node_modules
+
+# Sass
+.sass-cache
