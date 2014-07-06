@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => '/* BYSCRIPTS_SETUP:From Address: */', 'name' => '/* BYSCRIPTS_SETUP:From Name: */'],
+	'from' => ['address' => '/* BYSCRIPTS_SETUP:From Address:@getDefaultFromEmailAddress */', 'name' => '/* BYSCRIPTS_SETUP:From Name:@getProjectName */'],
 
 	/*
 	|--------------------------------------------------------------------------
