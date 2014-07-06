@@ -21,6 +21,7 @@ class FirstSetupCommand extends Command
     private $projectName;
     private $sProjectName;
     private $uProjectName;
+    private $domainName;
 
     public function ask($question, $default = null)
     {
@@ -44,8 +45,11 @@ class FirstSetupCommand extends Command
         $this->projectName  = $this->ask('Project name:');
         $this->sProjectName = Str::slug($this->projectName);
         $this->uProjectName = Str::slug($this->projectName, '_');
+        $this->domainName   = $this->ask('Prod domain name:', $this->getDefaultProdDomainName());
 
+        $this->line('');
         $this->info('If you want to skip a configuration for the moment, enter ~ as a value.');
+        $this->line('');
 
         $this->startParsing();
     }
@@ -58,7 +62,7 @@ class FirstSetupCommand extends Command
         foreach ($finder->files()->in(__DIR__ . '/../config') as $file) {
 
             $hasMatch = false;
-            $content = $file->getContents();
+            $content  = $file->getContents();
             preg_match_all('`/\* BYSCRIPTS_SETUP\:([^\:]+):([^\*]+)\*/`', $content, $matches, PREG_SET_ORDER);
 
             if (!empty($matches)) {
@@ -73,9 +77,9 @@ class FirstSetupCommand extends Command
                 $hasMatch = true;
 
                 foreach ($matches as $match) {
-                    $source  = $match[0];
-                    $question   = trim($match[1]);
-                    $default = trim($match[2]);
+                    $source   = $match[0];
+                    $question = trim($match[1]);
+                    $default  = trim($match[2]);
 
                     if (0 === strpos($default, '@')) {
                         $method  = trim($default, '@');
@@ -101,15 +105,27 @@ class FirstSetupCommand extends Command
     }
 
     /** @noinspection PhpUnusedPrivateMethodInspection */
+    private function getDefaultProdDomainName()
+    {
+        return $this->sProjectName . '.com';
+    }
+
+    /** @noinspection PhpUnusedPrivateMethodInspection */
     private function getDefaultProdUrl()
     {
-        return 'http://' . $this->sProjectName . '.com';
+        return 'http://' . $this->domainName;
     }
 
     /** @noinspection PhpUnusedPrivateMethodInspection */
     private function getDefaultDevUrl()
     {
-        return 'http://' . $this->sProjectName . '.local';
+        return 'http://' . $this->domainName . '.local';
+    }
+
+    /** @noinspection PhpUnusedPrivateMethodInspection */
+    private function getDefaultFromEmailAddress()
+    {
+        return 'contact@' . $this->domainName;
     }
 
     /** @noinspection PhpUnusedPrivateMethodInspection */
@@ -122,5 +138,11 @@ class FirstSetupCommand extends Command
     private function getDefaultDbName()
     {
         return Str::limit($this->uProjectName, 64, '');
+    }
+
+    /** @noinspection PhpUnusedPrivateMethodInspection */
+    private function getProjectName()
+    {
+        return $this->projectName;
     }
 }
