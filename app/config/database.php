@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
 	/*
 	|--------------------------------------------------------------------------
@@ -44,22 +44,18 @@ return array(
 	|
 	*/
 
-	'connections' => array(
-
-
-		'mysql' => array(
+	'connections' => [
+		'mysql' => [
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'forge',
-			'username'  => 'forge',
-			'password'  => '',
+			'database'  => '/* BYSCRIPTS_SETUP:DB Name:@getDefaultDbName */',
+			'username'  => '/* BYSCRIPTS_SETUP:DB User: */',
+			'password'  => '/* BYSCRIPTS_SETUP:DB Pass: */',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
-
-
-	),
+			'prefix'    => '/* BYSCRIPTS_SETUP:DB Table Prefix: */',
+		],
+	],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -85,16 +81,16 @@ return array(
 	|
 	*/
 
-	'redis' => array(
+	'redis' => [
 
 		'cluster' => false,
 
-		'default' => array(
+		'default' => [
 			'host'     => '127.0.0.1',
 			'port'     => 6379,
 			'database' => 0,
-		),
+		],
 
-	),
+	],
 
-);
+];

@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	'from' => ['address' => '/* BYSCRIPTS_SETUP:From Address: */', 'name' => '/* BYSCRIPTS_SETUP:From Name: */'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => null,
+	'username' => '/* BYSCRIPTS_SETUP:SMTP Username: */',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => '/* BYSCRIPTS_SETUP:SMTP Password: */',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -121,4 +121,4 @@ return array(
 
 	'pretend' => false,
 
-);
+];

@@ -14,6 +14,7 @@ return array(
     */
 
     'debug'     => true,
+    'url'       => '/* BYSCRIPTS_SETUP:Url:@getDefaultDevUrl */',
     'providers' => append_config(
         [
             'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',

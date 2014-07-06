@@ -18,20 +18,19 @@ return array(
 	|
 	*/
 
-	'connections' => array(
+	'connections' => [
 
-		'mysql' => array(
-			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'homestead',
-			'username'  => 'homestead',
-			'password'  => 'secret',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
+        'mysql' => [
+            'driver'    => 'mysql',
+            'host'      => 'localhost',
+            'database'  => '/* BYSCRIPTS_SETUP:DB Name:@getDefaultDbName */',
+            'username'  => '/* BYSCRIPTS_SETUP:DB User:root */',
+            'password'  => '/* BYSCRIPTS_SETUP:DB Pass:root */',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '/* BYSCRIPTS_SETUP:DB Table Prefix: */',
+        ],
 
-
-	),
+	],
 
 );

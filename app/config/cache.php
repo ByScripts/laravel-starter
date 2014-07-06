@@ -84,6 +84,6 @@ return array(
 	|
 	*/
 
-	'prefix' => 'laravel',
+	'prefix' => '/* BYSCRIPTS_SETUP:Prefix:@generateKey */',
 
 );
