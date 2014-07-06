@@ -1,5 +1,8 @@
 # Byscripts Laravel Starter
 
+- Laravel 4
+- Laravel IDE Helper
+- Laravel Twig Bridge
 - Bootstrap 3
 - FontAwesome 4
 - Angular 1.2
