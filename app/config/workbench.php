@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'name' => 'Thierry Goettelmann',
+	'name' => '/* BYSCRIPTS_SETUP:Author Name:Thierry Goettelmann */',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -26,6 +26,6 @@ return array(
 	|
 	*/
 
-	'email' => 'thierry@byscripts.info',
+	'email' => '/* BYSCRIPTS_SETUP:Author Email:thierry@byscripts.info */',
 
 );

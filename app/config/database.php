@@ -47,7 +47,7 @@ return [
 	'connections' => [
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => '/* BYSCRIPTS_SETUP:DB Host:localhost */',
 			'database'  => '/* BYSCRIPTS_SETUP:DB Name:@getDefaultDbName */',
 			'username'  => '/* BYSCRIPTS_SETUP:DB User: */',
 			'password'  => '/* BYSCRIPTS_SETUP:DB Pass: */',

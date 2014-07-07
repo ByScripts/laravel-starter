@@ -1,5 +1,14 @@
 # Byscripts Laravel Starter
 
+### Personal usage
+
+I made this repo for a personal usage, and some default options are specifically mine
+(for example my name and my email are in the `workbench.php` options).
+
+So don't be surprised if you want to use this repo as your own starting point.
+
+## Contains
+
 - Laravel 4
 - Laravel IDE Helper
 - Laravel Twig Bridge
@@ -8,6 +17,12 @@
 - Angular 1.2
 - Gulp
 - Bower
+
+## Usage
+
+* Download the zip file (or clone project then remove `.git` directory)
+* Run `composer update`
+* Run `php artisan byscripts:setup`
 
 ## Assets
 
