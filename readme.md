@@ -12,17 +12,23 @@ So don't be surprised if you want to use this repo as your own starting point.
 - Laravel 4
 - Laravel IDE Helper
 - Laravel Twig Bridge
-- Bootstrap 3
+- Bootstrap 3 (without Glyphicons)
 - FontAwesome 4
 - Angular 1.2
 - Gulp
 - Bower
 
+*The removing of Glyphicons from Bootstrap is pretty straightforward.*
+*I just copied the whole main `scss` which loads everything, and removed the glyphicons line*
+
 ## Usage
 
 * Download the zip file (or clone project then remove `.git` directory)
 * Run `composer update`
-* Run `php artisan byscripts:setup`
+* Run `php artisan byscripts:setup` and answer questions
+* Run `npm install`
+* Run `bower install`
+* Run `gulp`
 
 ## Assets
 
