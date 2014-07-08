@@ -12,6 +12,8 @@ So don't be surprised if you want to use this repo as your own starting point.
 - Laravel 4
 - Laravel IDE Helper
 - Laravel Twig Bridge
+- Laravel Debugbar
+- Laravel Generators
 - Bootstrap 3 (without Glyphicons)
 - FontAwesome 4
 - Angular 1.2
