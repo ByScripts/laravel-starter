@@ -4,6 +4,7 @@ sass = require 'gulp-ruby-sass'
 autoprefixer = require 'gulp-autoprefixer'
 imagemin = require 'gulp-imagemin'
 livereload = require 'gulp-livereload'
+run = require 'gulp-run'
 
 paths =
   coffee: 'assets/coffee/**/*.coffee'
@@ -31,6 +32,9 @@ gulp.task 'fonts', ->
   gulp.src paths.fonts
       .pipe gulp.dest 'public/fonts'
 
+gulp.task 'serve', ->
+  run('php artisan serve').exec()
+
 gulp.task 'watch', ->
   livereload.listen()
   gulp.watch paths.coffee, ['coffee']
@@ -39,4 +43,4 @@ gulp.task 'watch', ->
   gulp.watch 'public/**'
       .on 'change', livereload.changed
 
-gulp.task 'default', ['coffee', 'sass', 'img', 'fonts', 'watch']
+gulp.task 'default', ['coffee', 'sass', 'img', 'fonts', 'serve', 'watch']
