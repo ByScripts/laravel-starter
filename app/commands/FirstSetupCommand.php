@@ -5,7 +5,8 @@ use Symfony\Component\Finder\Finder;
 
 class FirstSetupCommand extends Command
 {
-    private $simulation = true;
+    private $simulation = false;
+
     /**
      * The console command name.
      *
