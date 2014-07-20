@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 
-rm -rf .git
-composer update
+echo "Removing .git directory..."
+rm -rf .git 2>&1 >> init.log
+
+echo "Composer update..."
+composer update 2>&1 >> init.log
+
+echo "Running Laravel Setup..."
 ./artisan byscripts:setup
-npm install
-bower install
+
+echo "Install NPM libraries..."
+npm install 2>&1 >> init.log
+
+echo "Install Bower libraries..."
+bower install 2>&1 >> init.log
+
+echo "Running gulp..."
 gulp
