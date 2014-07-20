@@ -47,13 +47,13 @@ return [
 	'connections' => [
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      => '/* BYSCRIPTS_SETUP:DB Host:localhost */',
-			'database'  => '/* BYSCRIPTS_SETUP:DB Name:@getDefaultDbName */',
-			'username'  => '/* BYSCRIPTS_SETUP:DB User: */',
-			'password'  => '/* BYSCRIPTS_SETUP:DB Pass: */',
+			'host'      => '/* BYSCRIPTS_SETUP_PROD:DB Host:localhost */',
+			'database'  => '/* BYSCRIPTS_SETUP_PROD:DB Name:@getDefaultDbName */',
+			'username'  => '/* BYSCRIPTS_SETUP_PROD:DB User: */',
+			'password'  => '/* BYSCRIPTS_SETUP_PROD:DB Pass: */',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '/* BYSCRIPTS_SETUP:DB Table Prefix: */',
+			'prefix'    => '/* BYSCRIPTS_SETUP_PROD:DB Table Prefix: */',
 		],
 	],
 

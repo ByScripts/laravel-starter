@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => '/* BYSCRIPTS_SETUP:From Address:@getDefaultFromEmailAddress */', 'name' => '/* BYSCRIPTS_SETUP:From Name:@getProjectName */'],
+	'from' => ['address' => '/* BYSCRIPTS_SETUP_PROD:From Address:@getDefaultFromEmailAddress */', 'name' => '/* BYSCRIPTS_SETUP:From Name:@getProjectName */'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
 	|
 	*/
 
-	'username' => '/* BYSCRIPTS_SETUP:SMTP Username: */',
+	'username' => '/* BYSCRIPTS_SETUP_PROD:SMTP Username: */',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
 	|
 	*/
 
-	'password' => '/* BYSCRIPTS_SETUP:SMTP Password: */',
+	'password' => '/* BYSCRIPTS_SETUP_PROD:SMTP Password: */',
 
 	/*
 	|--------------------------------------------------------------------------

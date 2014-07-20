@@ -22,3 +22,6 @@ Thumbs.db
 
 # Sass
 .sass-cache
+
+# Byscripts Setup
+app/storage/bss.meta

@@ -5,6 +5,7 @@ use Symfony\Component\Finder\Finder;
 
 class FirstSetupCommand extends Command
 {
+    private $simulation = true;
     /**
      * The console command name.
      *
@@ -21,7 +22,10 @@ class FirstSetupCommand extends Command
     private $projectName;
     private $sProjectName;
     private $uProjectName;
-    private $domainName;
+    private $prodDomainName;
+    private $devDomainName;
+    private $env;
+    private $regex = '`/\* BYSCRIPTS_SETUP\:([^\:]+):([^\*]+)\*/`';
 
     public function ask($question, $default = null)
     {
@@ -34,6 +38,37 @@ class FirstSetupCommand extends Command
         return parent::ask($question . ' [' . $displayDefault . '] ', $default);
     }
 
+    private function storeMeta()
+    {
+        $path = __DIR__ . '/../storage/bss.meta';
+
+        $meta = [
+            'projectName'  => $this->projectName,
+            'sProjectName' => $this->sProjectName,
+            'uProjectName' => $this->uProjectName,
+            'devDomainName' => $this->devDomainName
+        ];
+
+        file_put_contents($path, "<?php\nreturn " . var_export($meta, true) . ';');
+    }
+
+
+    private function loadMeta()
+    {
+        $path = __DIR__ . '/../storage/bss.meta';
+        if (file_exists($path)) {
+            $meta = require($path);
+            $this->projectName = $meta['projectName'];
+            $this->sProjectName = $meta['sProjectName'];
+            $this->uProjectName = $meta['uProjectName'];
+            $this->devDomainName = $meta['devDomainName'];
+
+            return true;
+        }
+
+        return false;
+    }
+
 
     /**
      * Execute the console command.
@@ -42,10 +77,33 @@ class FirstSetupCommand extends Command
      */
     public function fire()
     {
-        $this->projectName  = $this->ask('Project name:');
-        $this->sProjectName = Str::slug($this->projectName);
-        $this->uProjectName = Str::slug($this->projectName, '_');
-        $this->domainName   = $this->ask('Prod domain name:', $this->getDefaultProdDomainName());
+        if ($this->simulation) {
+            $this->info('=================');
+            $this->info(' SIMULATION MODE ');
+            $this->info('=================');
+        }
+        $this->env = $this->ask('Which env to configure (dev, prod)?', 'dev');
+
+        if ('prod' === $this->env) {
+            $this->regex = str_replace('BYSCRIPTS_SETUP', 'BYSCRIPTS_SETUP_PROD', $this->regex);
+        }
+
+        if (!$this->loadMeta()) {
+            $this->projectName  = $this->ask('Project name:');
+            $this->sProjectName = Str::slug($this->projectName);
+            $this->uProjectName = Str::slug($this->projectName, '_');
+            if ('dev' === $this->env) {
+                $this->devDomainName = $this->ask('Dev domain name:', $this->getDefaultDevDomainName());
+            }
+            $this->storeMeta();
+        }
+
+
+        if ('prod' === $this->env) {
+            $this->prodDomainName = $this->ask('Prod domain name:', $this->getDefaultProdDomainName());
+        } else {
+
+        }
 
         $this->line('');
         $this->info('If you want to skip a configuration for the moment, enter ~ as a value.');
@@ -63,7 +121,7 @@ class FirstSetupCommand extends Command
 
             $hasMatch = false;
             $content  = $file->getContents();
-            preg_match_all('`/\* BYSCRIPTS_SETUP\:([^\:]+):([^\*]+)\*/`', $content, $matches, PREG_SET_ORDER);
+            preg_match_all($this->regex, $content, $matches, PREG_SET_ORDER);
 
             if (!empty($matches)) {
 
@@ -97,35 +155,41 @@ class FirstSetupCommand extends Command
             }
 
             if ($hasMatch) {
-                file_put_contents($file->getPathname(), $content);
+                if (!$this->simulation) {
+                    file_put_contents($file->getPathname(), $content);
+                }
                 $this->line('');
                 $this->comment('>>> File updated...');
             }
         }
     }
 
-    /** @noinspection PhpUnusedPrivateMethodInspection */
     private function getDefaultProdDomainName()
     {
         return $this->sProjectName . '.com';
     }
 
+    private function getDefaultDevDomainName()
+    {
+        return $this->sProjectName . '.local';
+    }
+
     /** @noinspection PhpUnusedPrivateMethodInspection */
     private function getDefaultProdUrl()
     {
-        return 'http://' . $this->domainName;
+        return 'http://' . $this->prodDomainName;
     }
 
     /** @noinspection PhpUnusedPrivateMethodInspection */
     private function getDefaultDevUrl()
     {
-        return 'http://' . $this->domainName . '.local';
+        return 'http://' . $this->devDomainName;
     }
 
     /** @noinspection PhpUnusedPrivateMethodInspection */
     private function getDefaultFromEmailAddress()
     {
-        return 'contact@' . $this->domainName;
+        return 'contact@' . $this->prodDomainName;
     }
 
     /** @noinspection PhpUnusedPrivateMethodInspection */

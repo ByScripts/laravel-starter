@@ -24,8 +24,7 @@ return array(
     | your application so that it is used when running Artisan tasks.
     |
     */
-
-    'url'             => '/* BYSCRIPTS_SETUP:Production URL:@getDefaultProdUrl */',
+    'url'             => '/* BYSCRIPTS_SETUP_PROD:Production URL:@getDefaultProdUrl */',
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -48,7 +47,6 @@ return array(
     | to any of the locales which will be supported by the application.
     |
     */
-
     'locale'          => '/* BYSCRIPTS_SETUP:Locale:fr */',
     /*
     |--------------------------------------------------------------------------
